@@ -50,21 +50,24 @@
   }
   .mobile-menu {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(15,23,42,0.98);
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: linear-gradient(180deg,#0b1323 0%, #0f172a 70%, #0b1323 100%);
     z-index: 299;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1.2rem;
-    font-size: 1.2rem;
+    display: grid;
+    grid-template-columns: repeat(2,minmax(130px,1fr));
+    gap: 1.1rem 1rem;
+    align-content: flex-start;
+    justify-items: center;
+    padding: clamp(1.2rem,3vh,2rem) 1.1rem 2.5rem;
+    padding-top: calc( clamp(1.2rem,3vh,2rem) + 40px ); /* espaço para botão */
+    font-size: 1.05rem;
     font-family: 'Poppins', sans-serif;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
     transform: translateY(-100vh);
-    transition: transform 0.3s;
+    transition: transform 0.35s ease, opacity 0.3s ease;
     pointer-events: none;
     opacity: 0;
   }
@@ -74,18 +77,32 @@
     opacity: 1;
   }
   .mobile-menu a {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 86px;
     color: #5eead4;
     text-decoration: none;
-    font-weight: 700;
-    padding: 0.7rem 1.2rem;
-    border-radius: 1.2rem;
-    background: #23243a;
-    transition: background 0.2s, color 0.2s;
+    font-weight: 600;
+    padding: 0.85rem 0.9rem 0.75rem;
+    border-radius: 1.15rem;
+    background: linear-gradient(145deg,#141e30 0%, #1e293b 100%);
+    border: 1px solid #263347;
+    box-shadow: 0 4px 14px -4px rgba(0,0,0,0.55), 0 0 0 1px rgba(94,234,212,0.15) inset;
+    transition: background 0.25s, color 0.25s, transform 0.25s, box-shadow 0.25s;
+    backdrop-filter: blur(4px);
   }
   .mobile-menu a:hover {
-    background: #5eead4;
-    color: #23243a;
+    background: #1d3146;
+    color: #fbbf24;
+    box-shadow: 0 6px 20px -6px rgba(0,0,0,0.6), 0 0 0 1px #334155 inset;
+    transform: translateY(-3px);
   }
+  .mobile-menu::-webkit-scrollbar { width: 6px; }
+  .mobile-menu::-webkit-scrollbar-track { background: transparent; }
+  .mobile-menu::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
 }
 @media (max-width: 600px) {
   html, body {
