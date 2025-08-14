@@ -10,6 +10,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <button class="menu-toggle" aria-label="Abrir menu" tabindex="0" style="display:none;">
+    &#9776;
+  </button>
+  <nav class="mobile-menu" aria-label="Menu mobile" style="display:none;">
+    <a href="index.html" class="nav-item"><span class="nav-icon">📊</span><span class="nav-label">Dashboard</span></a>
+    <a href="pages/populacao.html" class="nav-item"><span class="nav-icon">👥</span><span class="nav-label">População</span></a>
+    <a href="pages/economia.html" class="nav-item"><span class="nav-icon">💰</span><span class="nav-label">Economia</span></a>
+    <a href="pages/educacao.html" class="nav-item"><span class="nav-icon">🎓</span><span class="nav-label">Educação</span></a>
+    <a href="pages/saude.html" class="nav-item"><span class="nav-icon">🩺</span><span class="nav-label">Saúde</span></a>
+    <a href="pages/infraestrutura.html" class="nav-item"><span class="nav-icon">🏗️</span><span class="nav-label">Infraestrutura</span></a>
+    <a href="pages/energia.html" class="nav-item"><span class="nav-icon">⚡</span><span class="nav-label">Energia</span></a>
+    <a href="pages/mobilidade.html" class="nav-item"><span class="nav-icon">🚉</span><span class="nav-label">Mobilidade</span></a>
+    <a href="pages/meio-ambiente.html" class="nav-item"><span class="nav-icon">🌱</span><span class="nav-label">Meio Ambiente</span></a>
+  </nav>
   <header class="header" aria-label="Cabeçalho fixo">
     <h1 class="logo">
   <img src="assets/perfil.jpeg" alt="Foto de perfil" class="profile-pic" />
@@ -53,20 +67,61 @@
       <div class="stack-wrapper">
         <section class="dashboard-cards" aria-label="Cards de dados"></section>
         <section class="dashboard-charts" aria-label="Gráficos"></section>
+        <div style="width:100%;display:flex;justify-content:flex-end;margin-top:1.2rem;">
+          <button class="export-btn export-img-btn" aria-label="Exportar dashboard" style="min-width:180px;">Exportar Dashboard</button>
+        </div>
       </div>
     </div><!-- .info-container -->
     <div class="ticker-bar" aria-label="Cotações simuladas">
-    <div style="display: flex; gap: 1rem; justify-content: flex-end;">
-      <button class="export-btn" aria-label="Exportar dados para CSV">Exportar CSV</button>
-      <button class="export-btn export-img-btn" aria-label="Exportar imagem do dashboard">Exportar Imagem</button>
+      <div class="ticker-track">
+  <span class="ticker-item ticker-up">USD/BRL: R$ 5,32</span>
+  <span class="ticker-item ticker-down">EUR/BRL: R$ 5,78</span>
+  <span class="ticker-item ticker-up">BTC/USD: $ 44.200</span>
+  <span class="ticker-item ticker-down">ETH/USD: $ 2.350</span>
+  <span class="ticker-item ticker-up">JPY/BRL: R$ 0,036</span>
+      </div>
     </div>
-  <footer class="site-footer" role="contentinfo">Desenvolvido por Eric Campos</footer>
+    <footer class="site-footer" role="contentinfo">Desenvolvido por Eric Campos</footer>
+  </main>
   </main>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
   <script type="module" src="js/common.js"></script>
   <script type="module" src="js/main.js"></script>
+  <script>
+    // Exibe/esconde botão e menu mobile conforme largura
+    function toggleMobileMenu(show) {
+      const btn = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.mobile-menu');
+      if(window.innerWidth <= 600) {
+        btn.style.display = 'flex';
+        menu.style.display = 'flex';
+      } else {
+        btn.style.display = 'none';
+        menu.style.display = 'none';
+        menu.classList.remove('open');
+        btn.classList.remove('open');
+      }
+    }
+    window.addEventListener('resize', toggleMobileMenu);
+    document.addEventListener('DOMContentLoaded', () => {
+      toggleMobileMenu();
+      const btn = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.mobile-menu');
+      btn.addEventListener('click', () => {
+        menu.classList.toggle('open');
+        btn.classList.toggle('open');
+      });
+      // Fecha menu ao clicar em link
+      menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          menu.classList.remove('open');
+          btn.classList.remove('open');
+        });
+      });
+    });
+  </script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       if (!window.Chart) return;
