@@ -179,17 +179,15 @@
     font-size: 1.3rem;
   }
   .export-btn.export-img-btn {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 56px;
-    width: 100vw;
-    margin: 0;
-    border-radius: 0;
-    font-size: 1rem;
-    padding: 0.7rem 0;
-    z-index: 210;
-    box-shadow: 0 -1px 8px 0 rgba(30,41,59,0.10);
+  position: static !important;
+  left: auto; right: auto; bottom: auto;
+  width: 100%;
+  margin: 0.6rem 0 0.4rem;
+  border-radius: 1rem;
+  font-size: 1rem;
+  padding: 0.65rem 0;
+  z-index: 1;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.25);
   }
   .export-btn.export-img-btn:active {
     background: #38bdf8;
@@ -279,9 +277,9 @@
     text-overflow: ellipsis;
   }
   .main-content {
-    margin-top: 52px;
-    margin-bottom: 70px;
-    padding: 0.2rem 0.1rem 0.7rem 0.1rem;
+  margin-top: 52px;
+  margin-bottom: 0;
+  padding: 0.2rem 0.1rem 2.4rem 0.1rem; /* espaço inferior p/ footer */
     gap: 0.5rem;
   }
   .info-container, .stack-wrapper {
