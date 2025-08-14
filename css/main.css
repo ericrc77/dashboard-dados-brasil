@@ -702,11 +702,27 @@
   z-index: 95;
   font-family: 'Inter', monospace;
 }
-.ticker-track { display: flex; gap: 2.5rem; animation: tickerMove 40s linear infinite; }
-.ticker-item { font-size: 0.85rem; letter-spacing: 1px; color: #94a3b8; }
-.ticker-item.up { color: #10b981; }
-.ticker-item.down { color: #f43f5e; }
-@keyframes tickerMove { to { transform: translateX(-50%); } }
+.ticker-track {
+  display: flex;
+  gap: 2.5rem;
+  animation: tickerMove 28s linear infinite;
+  will-change: transform;
+}
+/* Itens duplicados (via JS ou manual) permitirão loop perfeito */
+.ticker-item {
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  color: #94a3b8;
+  white-space: nowrap;
+}
+/* Cores uniformes para positivo/negativo */
+.ticker-up, .ticker-item.up { color: #16c172 !important; font-weight:600; }
+.ticker-down, .ticker-item.down { color: #ef4444 !important; font-weight:600; }
+@keyframes tickerMove { to { transform: translateX(-100%); } }
+@media (max-width: 600px) {
+  .ticker-track { animation-duration: 32s; gap: 1.8rem; }
+  .ticker-item { font-size: 0.78rem; }
+}
 /* Gráficos */
 .charts-row {
   display: flex;
