@@ -3,27 +3,32 @@ import { setupSidebar } from './modules/sidebar.js';
 function setupTickerContinuous() {
   const track = document.querySelector('.ticker-track');
   if (!track || track.dataset.cloned) return;
-  track.innerHTML = track.innerHTML + track.innerHTML; // duplica para loop suave
+  // Duplica conteúdo apenas uma vez para loop
+  track.innerHTML += track.innerHTML;
   track.dataset.cloned = '1';
-  // Atualização dinâmica de valores simulados
-  const items = () => track.querySelectorAll('.ticker-item');
-  setInterval(() => {
-    items().forEach(span => {
-      const txt = span.textContent;
-      const match = txt.match(/([+-]?)(\d+\.\d+)%/);
-      if (match) {
-        const sinal = match[1] || '+';
+  const spans = Array.from(track.querySelectorAll('.ticker-item'));
+  let lastUpdate = performance.now();
+  const intervalMs = 4000;
+  function update(now){
+    if (now - lastUpdate >= intervalMs) {
+      for (const span of spans) {
+        const txt = span.textContent;
+        const match = /([+-]?)(\d+\.\d+)%/.exec(txt);
+        if (!match) continue;
         let val = parseFloat(match[2]);
-        // pequena variação
-        const delta = (Math.random() * 0.3);
-        val = Math.max(0, (val + (Math.random() > 0.5 ? delta : -delta)));
-        const novoSinal = val === 0 ? '' : (Math.random() > 0.48 ? '-' : '+');
-        span.textContent = txt.replace(/([+-]?)(\d+\.\d+)%/, `${novoSinal}${val.toFixed(2)}%`);
-        span.classList.toggle('up', !novoSinal.startsWith('-'));
-        span.classList.toggle('down', novoSinal.startsWith('-'));
+        const delta = (Math.random()*0.28);
+        val = Math.max(0, val + (Math.random()>0.5? delta : -delta));
+        const negativo = Math.random() > 0.52;
+        const sinal = negativo? '-' : '+';
+        span.textContent = txt.replace(/([+-]?)(\d+\.\d+)%/, `${sinal}${val.toFixed(2)}%`);
+        span.classList.toggle('ticker-up', !negativo);
+        span.classList.toggle('ticker-down', negativo);
       }
-    });
-  }, 4000);
+      lastUpdate = now;
+    }
+    requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
 }
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -67,7 +67,8 @@
     overscroll-behavior: contain;
     scrollbar-width: thin;
     transform: translateY(-100vh);
-    transition: transform 0.35s ease, opacity 0.3s ease;
+  transition: transform 0.35s ease, opacity 0.3s ease;
+  will-change: transform, opacity;
     pointer-events: none;
     opacity: 0;
   }
@@ -91,7 +92,14 @@
     background: linear-gradient(145deg,#141e30 0%, #1e293b 100%);
     border: 1px solid #263347;
     box-shadow: 0 4px 14px -4px rgba(0,0,0,0.55), 0 0 0 1px rgba(94,234,212,0.15) inset;
-    transition: background 0.25s, color 0.25s, transform 0.25s, box-shadow 0.25s;
+  transition: background 0.25s, color 0.25s, transform 0.25s, box-shadow 0.25s;
+  will-change: transform, background, box-shadow;
+.mobile-menu a:active { transform: scale(.96); }
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu, .mobile-menu a { transition: none !important; animation: none !important; }
+  .ticker-track { animation-duration: 60s; }
+}
     backdrop-filter: blur(4px);
   }
   .mobile-menu a:hover {
