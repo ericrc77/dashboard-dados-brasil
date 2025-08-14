@@ -224,15 +224,7 @@
     background: transparent;
     max-height: 45vw;
   }
-  .site-footer {
-    font-size: 0.6rem;
-    padding: 0.4rem 0.1rem 0.6rem;
-    background: #0f172a;
-    color: #64748b;
-    border-top: 1px solid #23243a;
-    box-shadow: none;
-    margin-bottom: 0;
-  }
+  /* footer: estilos aplicados globalmente; bloco duplicado removido */
   *:focus { outline: 2px solid #5eead4; outline-offset: 2px; }
   body, html { -webkit-tap-highlight-color: transparent; }
 }
@@ -362,15 +354,7 @@
     aspect-ratio: 1.2/1;
     background: transparent;
   }
-  .site-footer {
-    font-size: 0.6rem;
-    padding: 0.4rem 0.1rem 0.6rem;
-    background: #0f172a;
-    color: #64748b;
-    border-top: 1px solid #23243a;
-    box-shadow: none;
-    margin-bottom: 0;
-  }
+  /* footer duplicado removido */
   *:focus { outline: 2px solid #5eead4; outline-offset: 2px; }
   body, html { -webkit-tap-highlight-color: transparent; }
 }
@@ -449,10 +433,7 @@
     margin-top: 0.7rem;
     font-size: 1rem;
   }
-  .site-footer {
-    font-size: 0.7rem;
-    padding: 0.7rem 0.2rem 1rem;
-  }
+  /* footer duplicado removido */
 }
 @media (max-width: 600px) {
   .ticker-bar {
@@ -471,10 +452,7 @@
     font-size: 0.95rem;
     padding: 0.5rem 0.2rem;
   }
-  .site-footer {
-    font-size: 0.6rem;
-    padding: 0.5rem 0.1rem 0.7rem;
-  }
+  /* footer duplicado removido */
 }
 .ticker-up { color: #22c55e !important; font-weight: 600; }
 .ticker-down { color: #ef4444 !important; font-weight: 600; }
@@ -1070,6 +1048,4 @@ body {
   background: linear-gradient(180deg, rgba(15,23,42,0.0) 0%, rgba(15,23,42,0.85) 100%);
   box-shadow: 0 -2px 12px 0 rgba(30,41,59,0.12);
 }
-@media (max-width: 600px) {
-  .site-footer { font-size: 0.6rem; padding: 0.8rem 0.6rem 1rem; }
-}
+/* Removido override mobile para manter estilo idêntico ao desktop */
