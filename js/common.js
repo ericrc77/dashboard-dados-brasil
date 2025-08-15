@@ -1,4 +1,5 @@
 import { setupSidebar } from './modules/sidebar.js';
+import { setupMobileMenu } from './modules/mobileMenu.js';
 
 function setupTickerContinuous() {
   const track = document.querySelector('.ticker-track');
@@ -34,4 +35,28 @@ function setupTickerContinuous() {
 document.addEventListener('DOMContentLoaded', () => {
   setupSidebar();
   setupTickerContinuous();
+  setupMobileMenu();
+  setupHideHeaderOnScroll();
 });
+
+function setupHideHeaderOnScroll(){
+  let lastScrollY = window.scrollY;
+  let ticking = false;
+  function onScroll(){
+    if(window.innerWidth > 700) return; // somente mobile
+    if(!ticking){
+      window.requestAnimationFrame(()=>{
+        const currentY = window.scrollY;
+        if(currentY > lastScrollY && currentY > 40){
+          document.body.classList.add('hide-header');
+        } else {
+          document.body.classList.remove('hide-header');
+        }
+        lastScrollY = currentY;
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive:true });
+}

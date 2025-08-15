@@ -51,7 +51,7 @@ function montarDashboardPrincipal(){
   const gdpCtx = chartsWrapper.querySelector('#gdpBarChart').getContext('2d');
   const quarters = ['Q1-22','Q2-22','Q3-22','Q4-22','Q1-23','Q2-23','Q3-23','Q4-23'];
   const gdpValues = quarters.map((_,i)=> Number((Math.random()*3+0.5).toFixed(2)));
-  new window.Chart(gdpCtx, { type:'bar', data:{ labels:quarters, datasets:[{ label:'Crescimento %', data:gdpValues, backgroundColor:'#5eead4' }]}, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false }}, scales:{ x:{ ticks:{ color:'#94a3b8' }}, y:{ ticks:{ color:'#94a3b8' } } } }});
+  new window.Chart(gdpCtx, { type:'bar', data:{ labels:quarters, datasets:[{ label:'Crescimento %', data:gdpValues, backgroundColor:'#5eead4' }]}, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false }}, scales:{ x:{ ticks:{ display:false }, grid:{ color:'rgba(148,163,184,0.08)' }}, y:{ ticks:{ display:false }, grid:{ color:'rgba(148,163,184,0.08)' } } } }});
   // Gráfico pizza de setores
   const pieCtx = chartsWrapper.querySelector('#sectorPieChart').getContext('2d');
   const sectors = ['Agro','Indústria','Serviços'];

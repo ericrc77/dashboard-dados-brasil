@@ -202,7 +202,12 @@ function renderChartJs(container, cfg) {
       colors: { type: 'color', duration: 2500, loop: true }
     },
     plugins: { legend: { display: cfg.type !== 'horizontal-bar' }, tooltip: { backgroundColor:'#1e293b', borderColor:'#5eead4', borderWidth:1, padding:12 } },
-    layout: { padding: 8 }
+    layout: { padding: 8 },
+    // Escalas serão sobrescritas abaixo conforme tipo, mas padrão remove ticks numéricos
+    scales: {
+      x: { ticks: { display:false }, grid:{ color:'rgba(148,163,184,0.08)' } },
+      y: { ticks: { display:false }, grid:{ color:'rgba(148,163,184,0.08)' } }
+    }
   };
   let dataset;
   switch(cfg.type){
@@ -211,7 +216,7 @@ function renderChartJs(container, cfg) {
       chartJsConfig.data={ labels: dataObj.labels, datasets: [
         {label:'Participação', data: dataObj.data, backgroundColor: dataObj.labels.map((_,i)=>baseColors[i%baseColors.length])}
       ]};
-      commonOpts.scales={ x:{ stacked:true, ticks:{ color:'#89a' }}, y:{ stacked:true, ticks:{ color:'#89a' }}};
+  commonOpts.scales={ x:{ stacked:true, ticks:{ display:false }, grid:{ color:'rgba(148,163,184,0.08)' }}, y:{ stacked:true, ticks:{ display:false }, grid:{ color:'rgba(148,163,184,0.08)' }}};
       break;
     case 'radar':
       chartJsConfig.type='radar';
@@ -231,13 +236,13 @@ function renderChartJs(container, cfg) {
       chartJsConfig.type='bar';
       chartJsConfig.data={ labels: dataObj.labels, datasets:[{ label:'Capacidade', data:dataObj.data, backgroundColor:'#38bdf8' }]};
       commonOpts.indexAxis='y';
-      commonOpts.scales={ x:{ ticks:{ color:'#5eead4'}}, y:{ ticks:{ color:'#5eead4'}}};
+  commonOpts.scales={ x:{ ticks:{ display:false }, grid:{ color:'rgba(148,163,184,0.08)' }}, y:{ ticks:{ display:false }, grid:{ color:'rgba(148,163,184,0.08)' }}};
       break;
     case 'area-line':
       chartJsConfig.type='line';
       const gradient = ctx.createLinearGradient(0,0,0,360); gradient.addColorStop(0,'rgba(56,189,248,0.5)'); gradient.addColorStop(1,'rgba(56,189,248,0)');
       chartJsConfig.data={ labels: dataObj.labels, datasets:[{ label:'Fluxo', data:dataObj.data, borderColor:'#38bdf8', backgroundColor:gradient, fill:true, tension:0.45, pointRadius:4, pointHoverRadius:10 }]};
-      commonOpts.scales={ x:{ ticks:{ color:'#5eead4'}}, y:{ ticks:{ color:'#5eead4'} } };
+  commonOpts.scales={ x:{ ticks:{ display:false }, grid:{ color:'rgba(148,163,184,0.08)' }}, y:{ ticks:{ display:false }, grid:{ color:'rgba(148,163,184,0.08)' } } };
       break;
     default:
       chartJsConfig.type='bar';

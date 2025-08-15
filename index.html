@@ -5,11 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard Interativo de Dados Públicos</title>
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body data-page="dashboard">
   <button class="menu-toggle" aria-label="Abrir menu" tabindex="0" style="display:none;" aria-expanded="false">
     <span class="bar"></span>
     <span class="bar"></span>
@@ -60,23 +61,23 @@
   </aside>
   <main class="main-content">
     <!-- Blocos de informação agrupados em 3 -->
-    <div class="info-container">
+  <div class="info-container" data-aos="fade-up" data-aos-duration="800">
       <!-- Participação Regional -->
-      <section class="dashboard-info" aria-label="Participação Regional">
+  <section class="dashboard-info" aria-label="Participação Regional" data-aos="zoom-in" data-aos-delay="150">
         <div class="info-header"><h2 class="info-title">População por Região</h2></div>
         <div class="info-chart">
           <canvas id="regionPieChart" aria-label="Gráfico de pizza das regiões" role="img"></canvas>
         </div>
       </section>
       <!-- Estados mais populosos -->
-      <section class="banner-info" aria-label="Estados mais populosos">
+  <section class="banner-info" aria-label="Estados mais populosos" data-aos="zoom-in" data-aos-delay="250">
         <h2 class="banner-title">Top 5 Estados por População</h2>
         <div class="banner-chart">
           <canvas id="stateBarChart" aria-label="População por estado"></canvas>
         </div>
       </section>
       <!-- Cards e gráficos principais -->
-      <div class="stack-wrapper">
+  <div class="stack-wrapper" data-aos="fade-up" data-aos-delay="350">
         <section class="dashboard-cards" aria-label="Cards de dados"></section>
         <section class="dashboard-charts" aria-label="Gráficos"></section>
         <div style="width:100%;display:flex;justify-content:flex-end;margin-top:1.2rem;">
@@ -115,53 +116,10 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>document.addEventListener('DOMContentLoaded',()=>{ if(window.AOS) AOS.init({ once:true, offset: 60 }); });</script>
   <script type="module" src="js/common.js"></script>
   <script type="module" src="js/main.js"></script>
-  <script>
-    // Exibe/esconde botão e menu mobile conforme largura
-    function toggleMobileMenu(show) {
-      const btn = document.querySelector('.menu-toggle');
-      const menu = document.querySelector('.mobile-menu');
-      if(window.innerWidth <= 600) {
-        btn.style.display = 'flex';
-        menu.style.display = 'flex';
-      } else {
-        btn.style.display = 'none';
-        menu.style.display = 'none';
-        menu.classList.remove('open');
-        btn.classList.remove('open');
-      }
-    }
-    window.addEventListener('resize', toggleMobileMenu);
-    document.addEventListener('DOMContentLoaded', () => {
-      toggleMobileMenu();
-      const btn = document.querySelector('.menu-toggle');
-      const menu = document.querySelector('.mobile-menu');
-      btn.addEventListener('click', () => {
-        const isOpen = menu.classList.toggle('open');
-        btn.classList.toggle('open', isOpen);
-        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      });
-      // Fecha menu ao clicar em link
-      menu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          menu.classList.remove('open');
-          btn.classList.remove('open');
-          btn.setAttribute('aria-expanded','false');
-        });
-      });
-    });
-  </script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      if (!window.Chart) return;
-      // Região - pizza
-      const regCtx = document.getElementById('regionPieChart').getContext('2d');
-      new Chart(regCtx,{ type:'pie', data:{ labels:['Norte','Nordeste','Sudeste','Sul','Centro-Oeste'], datasets:[{ data:[18,28,42,8,4], backgroundColor:['#34d399','#38bdf8','#fbbf24','#f472b6','#c084fc'] }]}, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ color:'#94a3b8' } }} } });
-      // Estados - barra
-      const stCtx = document.getElementById('stateBarChart').getContext('2d');
-      new Chart(stCtx,{ type:'bar', data:{ labels:['SP','MG','RJ','BA','PR'], datasets:[{ label:'Pop (M)', data:[47.3,21.3,17.2,14.8,11.5], backgroundColor:'#5eead4' }]}, options:{ responsive:true, maintainAspectRatio:false, scales:{ x:{ ticks:{ color:'#94a3b8' }}, y:{ ticks:{ color:'#94a3b8' }}} } });
-    });
-  </script>
+  <script type="module" src="js/modules/homeCharts.js"></script>
 </body>
 </html>

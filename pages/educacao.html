@@ -9,7 +9,7 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700&display=swap" rel="stylesheet">
 	</head>
-	<body>
+	<body data-page="educacao">
 	<button class="menu-toggle" aria-label="Abrir menu" tabindex="0" style="display:none;" aria-expanded="false">
 		<span class="bar"></span>
 		<span class="bar"></span>
@@ -80,40 +80,6 @@
 			<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 			<script type="module" src="../js/common.js"></script>
 			<script type="module" src="../js/pageCategoria.js"></script>
-	<script src="../js/mobile-header.js"></script>
-	<script>
-	// Exibe/esconde botão e menu mobile conforme largura
-	function toggleMobileMenu(show) {
-		const btn = document.querySelector('.menu-toggle');
-		const menu = document.querySelector('.mobile-menu');
-		if(window.innerWidth <= 600) {
-			btn.style.display = 'flex';
-			menu.style.display = 'flex';
-		} else {
-			btn.style.display = 'none';
-			menu.style.display = 'none';
-			menu.classList.remove('open');
-			btn.classList.remove('open');
-		}
-	}
-	window.addEventListener('resize', toggleMobileMenu);
-	document.addEventListener('DOMContentLoaded', () => {
-		toggleMobileMenu();
-		const btn = document.querySelector('.menu-toggle');
-		const menu = document.querySelector('.mobile-menu');
-		btn.addEventListener('click', () => {
-			menu.classList.toggle('open');
-			btn.classList.toggle('open');
-		});
-		// Fecha menu ao clicar em link
-		menu.querySelectorAll('a').forEach(link => {
-			link.addEventListener('click', () => {
-				menu.classList.remove('open');
-				btn.classList.remove('open');
-			});
-		});
-	});
-	</script>
 		</main>
 	</body>
 </html>
