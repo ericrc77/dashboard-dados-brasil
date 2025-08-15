@@ -10,8 +10,10 @@
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700&display=swap" rel="stylesheet">
 	</head>
 	<body>
-	<button class="menu-toggle" aria-label="Abrir menu" tabindex="0" style="display:none;">
-		&#9776;
+	<button class="menu-toggle" aria-label="Abrir menu" tabindex="0" style="display:none;" aria-expanded="false">
+		<span class="bar"></span>
+		<span class="bar"></span>
+		<span class="bar"></span>
 	</button>
 	<nav class="mobile-menu" aria-label="Menu mobile" style="display:none;">
 		<a href="../index.html" class="nav-item"><span class="nav-icon">📊</span><span class="nav-label">Dashboard</span></a>
@@ -45,25 +47,27 @@
 		</aside>
 		<div class="ticker-bar">
 			<div class="ticker-track">
-				<span class="ticker-item ticker-up">IBOV +0.85%</span>
-				<span class="ticker-item ticker-down">DÓLAR -0.34%</span>
-				<span class="ticker-item ticker-up">OURO +1.12%</span>
-				<span class="ticker-item ticker-up">SELIC 10.75%</span>
-				<span class="ticker-item ticker-down">NASDAQ -0.48%</span>
-				<span class="ticker-item ticker-up">S&P500 +0.22%</span>
-				<span class="ticker-item ticker-up">IPCA 4.2%</span>
-				<span class="ticker-item ticker-down">EURO -0.18%</span>
-				<span class="ticker-item ticker-up">BITCOIN +2.45%</span>
-				<!-- duplicados -->
-				<span class="ticker-item ticker-up">IBOV +0.85%</span>
-				<span class="ticker-item ticker-down">DÓLAR -0.34%</span>
-				<span class="ticker-item ticker-up">OURO +1.12%</span>
-				<span class="ticker-item ticker-up">SELIC 10.75%</span>
-				<span class="ticker-item ticker-down">NASDAQ -0.48%</span>
-				<span class="ticker-item ticker-up">S&P500 +0.22%</span>
-				<span class="ticker-item ticker-up">IPCA 4.2%</span>
-				<span class="ticker-item ticker-down">EURO -0.18%</span>
-				<span class="ticker-item ticker-up">BITCOIN +2.45%</span>
+				<span class="ticker-item ticker-up">USD/BRL: R$ 5,32 ↗</span>
+				<span class="ticker-item ticker-down">EUR/BRL: R$ 5,78 ↘</span>
+				<span class="ticker-item ticker-up">BTC/USD: $44.200 ↗</span>
+				<span class="ticker-item ticker-down">ETH/USD: $2.350 ↘</span>
+				<span class="ticker-item ticker-up">JPY/BRL: R$ 0,036 ↗</span>
+				<span class="ticker-item ticker-up">GBP/BRL: R$ 6,45 ↗</span>
+				<span class="ticker-item ticker-down">AUD/BRL: R$ 3,42 ↘</span>
+				<span class="ticker-item ticker-up">CAD/BRL: R$ 3,89 ↗</span>
+				<span class="ticker-item ticker-down">CHF/BRL: R$ 5,95 ↘</span>
+				<span class="ticker-item ticker-up">IBOV: 126.850 ↗</span>
+				<!-- duplicados para loop contínuo -->
+				<span class="ticker-item ticker-up">USD/BRL: R$ 5,32 ↗</span>
+				<span class="ticker-item ticker-down">EUR/BRL: R$ 5,78 ↘</span>
+				<span class="ticker-item ticker-up">BTC/USD: $44.200 ↗</span>
+				<span class="ticker-item ticker-down">ETH/USD: $2.350 ↘</span>
+				<span class="ticker-item ticker-up">JPY/BRL: R$ 0,036 ↗</span>
+				<span class="ticker-item ticker-up">GBP/BRL: R$ 6,45 ↗</span>
+				<span class="ticker-item ticker-down">AUD/BRL: R$ 3,42 ↘</span>
+				<span class="ticker-item ticker-up">CAD/BRL: R$ 3,89 ↗</span>
+				<span class="ticker-item ticker-down">CHF/BRL: R$ 5,95 ↘</span>
+				<span class="ticker-item ticker-up">IBOV: 126.850 ↗</span>
 			</div>
 		</div>
 		<main class="main-content">

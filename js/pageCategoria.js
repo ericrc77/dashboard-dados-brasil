@@ -124,13 +124,12 @@ function gerarSerieBase(min, max, n = 60, volatilidade = 0.5) {
 }
 
 function montarCards(wrapper, cards) {
-  const grupos=[]; for(let i=0;i<cards.length;i+=3){ grupos.push(cards.slice(i,i+3)); }
-  wrapper.innerHTML = grupos.map(g=>`<div class="cards-row">${g.map(c=>`
+  wrapper.innerHTML = cards.map(c=>`
     <article class="card" data-value="${c.valor}" aria-label="${c.label}">
       <h3 class="card-title">${c.label}</h3>
       <p class="card-value">${c.valor}${c.sufixo || ''}</p>
       <span class="card-detail">${c.detalhe || ''}</span>
-    </article>`).join('')}</div>`).join('');
+    </article>`).join('');
 }
 
 function montarGrafico(wrapper, chartCfg, titulo) {
